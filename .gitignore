@@ -1,0 +1,30 @@
+# Abhängigkeiten
+node_modules/
+.npm/
+
+# Umgebungsvariablen (NIEMALS hochladen!)
+.env
+.env.local
+.env.production
+
+# Build-Ausgaben
+dist/
+build/
+.next/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Betriebssystem
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Temporäre Dateien
+*.tmp
+*.temp
