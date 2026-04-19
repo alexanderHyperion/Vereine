@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth.js';
+import { initDatabase } from './db/init.js';
 
 dotenv.config();
 
@@ -35,6 +36,14 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Interner Serverfehler.' });
 });
 
-app.listen(PORT, () => {
-  console.log(`✅ Skateclub Backend läuft auf Port ${PORT}`);
-});
+// Datenbank initialisieren und dann Server starten
+initDatabase()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`✅ Skateclub Backend läuft auf Port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error('❌ Server konnte nicht gestartet werden:', err.message);
+    process.exit(1);
+  });
